@@ -1,0 +1,16 @@
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\bin\Debug\net5.0\HW1.exe
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\bin\Debug\net5.0\HW1.deps.json
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\bin\Debug\net5.0\HW1.runtimeconfig.json
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\bin\Debug\net5.0\HW1.runtimeconfig.dev.json
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\bin\Debug\net5.0\HW1.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\bin\Debug\net5.0\HW1.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.csproj.AssemblyReference.cache
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.AssemblyInfoInputs.cache
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.AssemblyInfo.cs
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.csproj.CoreCompileInputs.cache
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\refint\HW1.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\HW1.genruntimeconfig.cache
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW1\HW1\obj\Debug\net5.0\ref\HW1.dll
