@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "pSZJRqJiZTvhVR3kYBpWj80irLhUJyPpNAHMk3v0lxObcnTGr2l5fswDL811EO3vrnxoB1Ufgwi31Sbi+IRIiA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2\\HW2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mikhail\\.nuget\\packages\\htmlagilitypack\\1.11.43\\htmlagilitypack.1.11.43.nupkg.sha512"
+  ],
+  "logs": []
+}

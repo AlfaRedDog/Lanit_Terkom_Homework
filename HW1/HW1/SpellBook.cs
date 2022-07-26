@@ -11,12 +11,14 @@ namespace HW1
         public string Title { get; set; }
         public  int Pages { get; set; }
         public DateTime CreatedAt { get; set; }
+
         public SpellBook(string title, int pages, DateTime createdAt)
         {
             Title = title;
             Pages = pages;
             CreatedAt = createdAt;
         }
+
         public SpellBook()
         {
             Title = "DEFAULT";

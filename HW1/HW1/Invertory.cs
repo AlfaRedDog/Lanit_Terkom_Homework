@@ -9,6 +9,7 @@ namespace HW1
         public int Slots { get; set; }
         public Potion Elixir { get; set; }
         public SpellBook Magic { get; set; }
+
         public Invertory(string map, bool flag, int slots, Potion drink, SpellBook magic)
         {
             Map = map;
@@ -17,6 +18,7 @@ namespace HW1
             Elixir = drink;
             Magic = magic;
         }
+
         public void Clean()
         {
             Map = "";
@@ -25,10 +27,12 @@ namespace HW1
             Elixir = new Potion();
             Magic = new SpellBook();
         }
+
         public void ReadMap()
         {
             Console.WriteLine(Map);
         }
+
         public void PrintInfo()
         {
             Console.WriteLine($"{Map} {Flag} {Slots} {Elixir.Name} {Elixir.Milliliters} {Magic.Title} {Magic.Pages} {Magic.CreatedAt}");
