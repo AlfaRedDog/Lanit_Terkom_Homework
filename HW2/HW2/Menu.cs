@@ -9,30 +9,25 @@ using System.Net.Http;
 using System.Net.Sockets;
 
 // Вопросы к своему коду:
-// На сколько плохо то что я вызываю в ContinueActions рекурсивно методы, и можно ли это как-то исправить
+// На сколько плохо то что я вызываю рекурсивно методы, и можно ли это как-то исправить
 // как сделать так чтобы catch с одинаковым кодом не повторялись
 // что плохо с кодстайлом
 
 namespace HW2
 {
-    internal class Menu
+    internal static class Menu
     {
         delegate void SomeDelegat();
 
-        public void MainMenu()
+        public static void MainMenu()
         {
-            bool mainflag = true;
-            while (mainflag)
-            {
                 try
                 {
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    Console.WriteLine("Choose Operation:");
-                    Console.WriteLine("1 - Find Fibonacci number");
-                    Console.WriteLine("2 - Read File");
-                    Console.WriteLine("3 - Get HTML code from website");
-                    Console.WriteLine("exit - Close programm");
-                    Console.ResetColor();
+                    MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Choose Operation:");
+                    MenuOut.ColorWriteLine(ConsoleColor.Yellow, "1 - Find Fibonacci number");
+                    MenuOut.ColorWriteLine(ConsoleColor.Yellow, "2 - Read File");
+                    MenuOut.ColorWriteLine(ConsoleColor.Yellow, "3 - Get HTML code from website");
+                    MenuOut.ColorWriteLine(ConsoleColor.Yellow, "exit - Close programm");
                     
                     Console.ForegroundColor = ConsoleColor.Magenta;
                     string choose = Console.ReadLine();
@@ -42,46 +37,38 @@ namespace HW2
                     {
                         case "1": FibonacciMenu(); break;
                         case "2": ReadFileMenu(); break;
-                        case "3": ReadURL(); break;
-                        case "exit": mainflag = false; Console.WriteLine("Goodbye)"); break;
-                        default: Console.WriteLine("wrong code operation, try again"); break;
+                        case "3": ReadURLMenu(); break;
+                        case "exit": MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Goodbye)"); return;
+                        default: MenuOut.ColorWriteLine(ConsoleColor.Red, "wrong code operation, try again"); break;
                     }
+
+                    MainMenu();
                 }
-                catch(ExecutionEngineException ex) // Изменить на Exeption
+                catch(Exception ex)
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(ex.Message);
-                    Console.WriteLine(ex.StackTrace);
+                    MenuOut.ColorWriteLine(ConsoleColor.Red, ex.Message);
+                    MenuOut.ColorWriteLine(ConsoleColor.Red, ex.StackTrace);
                 }
-            }
         }
 
-        public void FibonacciMenu()
+        public static void FibonacciMenu()
+        {
+            Int32.TryParse(PrintRequestTakeResponse("Enter number:"), out int N);
+            Fibonacci fibonacci = new Fibonacci();
+            fibonacci.PrintFibonacciSequence(N);
+
+            SomeDelegat sd = new SomeDelegat(FibonacciMenu);
+            ContinueActions(sd);
+        }
+
+        public static void ReadFileMenu()
         {
             try
             {
-                int N = Int32.Parse(PrintChooseTakeAnswer("Enter number:"));
-                Fibonacci fibonacci = new Fibonacci();
-                fibonacci.PrintFibonacciSequence(N);
-
-                SomeDelegat sd = new SomeDelegat(FibonacciMenu);
-                ContinueActions(sd);
-            }
-            catch(FormatException ex)
-            {
-                PrintInfoException("Wrong format of number, try again", ex);
-                FibonacciMenu();
-            }
-        }
-
-        public void ReadFileMenu()
-        {
-            try
-            {
-                string path = PrintChooseTakeAnswer("Enter path to file:");
+                string path = PrintRequestTakeResponse("Enter path to file:");
                 if (path.Equals("main menu"))
                     return;
-                string countLines = PrintChooseTakeAnswer("Enter the number of lines you want to count: count / all");
+                string countLines = PrintRequestTakeResponse("Enter the number of lines you want to count: count / all");
 
                 FileReader fileReader = new FileReader();
                 SomeDelegat sd = new SomeDelegat(ReadFileMenu);
@@ -91,103 +78,103 @@ namespace HW2
                     fileReader.ReadAllLines(path);
                     ContinueActions(sd);
                 }
-
-                fileReader.ReadNLines(path, Int32.Parse(countLines)); // change on TryParse later
+                if (Int32.TryParse(countLines, out int a))
+                    fileReader.ReadNLines(path, a);
+                else
+                    throw new FormatException();
                 ContinueActions(sd);
             }
             catch (FormatException ex)
             {
-                PrintInfoException("Wrong format of count lines, try again", ex);
+                MenuOut.PrintInfoException("Wrong format of count lines, try again", ex);
                 ReadFileMenu();
             }
             catch (DirectoryNotFoundException ex)
-            {
-                Console.ForegroundColor = ConsoleColor.Yellow;   
-                Console.WriteLine("Wrong directory, try again");
+            { 
+                MenuOut.ColorWriteLine(ConsoleColor.Red, "Wrong directory, try again");
                 ReadFileMenu();
             }
             catch(FileNotFoundException ex)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Wrong file, try again");
+                MenuOut.ColorWriteLine(ConsoleColor.Red, "Wrong file, try again");
                 ReadFileMenu();
             }
             catch(ArgumentException ex)
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("path is empty, try again");
+                MenuOut.ColorWriteLine(ConsoleColor.Red, "path is empty, try again");
                 ReadFileMenu();
             }
         }
 
-        public void ReadURL()
+        public static void ReadURLMenu()
         {
             try
             {
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Enter website URL:");
+                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Enter website URL:");
                 //https://google.com
+                //https://alfareddog.github.io/
+
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 string urlAdress = Console.ReadLine();
                 if (urlAdress.Equals("main menu")) return;
 
-                Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine("Enter path to file:");
+                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Enter path to file:");
                 //C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\HTMLfile.html
+
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 string path = Console.ReadLine();
+
                 if (path.Equals("main menu")) return;
 
                 HTMLReader reader = new HTMLReader();
                 reader.ReadAndWriteHtmlToFile(urlAdress, path);
 
-                SomeDelegat sd = new SomeDelegat(ReadURL);
+                SomeDelegat sd = new SomeDelegat(ReadURLMenu);
                 ContinueActions(sd);
             }
             catch(InvalidOperationException ex)
             {
-                PrintInfoException("Wrong URL, try again", ex);
-                ReadURL();
+                MenuOut.PrintInfoException("Wrong URL, try again", ex);
+                ReadURLMenu();
             }
             catch (ArgumentException ex)
             {
-                PrintInfoException("Only 'http' and 'https' schemes are allowed", ex);
-                ReadURL();
+                MenuOut.PrintInfoException("Argument excepton", ex);
+                ReadURLMenu();
             }
             catch (HttpRequestException ex)
             {
-                PrintInfoException("The host of this url is unknown, try again", ex);
-                ReadURL();
+                MenuOut.PrintInfoException("The host of this url is unknown, try again", ex);
+                ReadURLMenu();
             }
             catch(SocketException ex)
             {
-                PrintInfoException("The host of this url is unknown, try again", ex);
-                ReadURL();
+                MenuOut.PrintInfoException("The host of this url is unknown, try again", ex);
+                ReadURLMenu();
             }
             catch(AggregateException ex)
             {
-                PrintInfoException("Wrong URL, try again", ex);
-                ReadURL();
+                MenuOut.PrintInfoException("Wrong URL, try again", ex);
+                ReadURLMenu();
             }
             catch (DirectoryNotFoundException ex)
             {
-                PrintInfoException("Wrong directory, try again", ex);
-                ReadFileMenu();
+                MenuOut.PrintInfoException("Wrong directory, try again", ex);
+                ReadURLMenu();
             }
             catch (FileNotFoundException ex)
             {
-                PrintInfoException("Wrong file, try again", ex);
-                ReadFileMenu();
+                MenuOut.PrintInfoException("Wrong file, try again", ex);
+                ReadURLMenu();
             }
         }
 
-        private void ContinueActions(SomeDelegat sd)
+        private static void ContinueActions(SomeDelegat sd)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine("Continue actions? Y/N");
+            MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Continue actions? Y/N");
+
             Console.ForegroundColor = ConsoleColor.Magenta;
             string choose = Console.ReadLine();
-            Console.ForegroundColor = ConsoleColor.Yellow;
 
             switch (choose)
             {
@@ -201,29 +188,18 @@ namespace HW2
                 case "Yes":
                 case "yes": sd.Invoke(); break;
 
-                default: Console.WriteLine("Wrong format answer, try again"); ContinueActions(sd); break;
+                default: MenuOut.ColorWriteLine(ConsoleColor.Red, "Wrong format answer, try again"); ContinueActions(sd); break;
             }
         }
 
-        private string PrintChooseTakeAnswer(string info)
+        private  static string PrintRequestTakeResponse(string info)
         {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(info);
+            MenuOut.ColorWriteLine(ConsoleColor.Yellow, info);
 
             Console.ForegroundColor = ConsoleColor.Magenta;
             string answer = Console.ReadLine();
 
             return answer;
-        }
-
-        private void PrintInfoException(string text, Exception ex)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(ex.Message);
-            Console.WriteLine(ex.StackTrace);
-
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine(text);
         }
     }
 }

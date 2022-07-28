@@ -9,4 +9,11 @@
     <PackageReference Include="HtmlAgilityPack" Version="1.11.43" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HW2.fib\HW2.fib.csproj" />
+    <ProjectReference Include="..\HW2.FIleReader\HW2.FIleReader.csproj" />
+    <ProjectReference Include="..\HW2.HTMLReader\HW2.HTMLReader.csproj" />
+    <ProjectReference Include="..\HW2.MenuOutput\HW2.MenuOutput.csproj" />
+  </ItemGroup>
+
 </Project>

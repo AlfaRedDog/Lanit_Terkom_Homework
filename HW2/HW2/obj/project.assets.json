@@ -10,6 +10,52 @@
         "runtime": {
           "lib/netstandard2.0/HtmlAgilityPack.dll": {}
         }
+      },
+      "HW2.fib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "HW2.MenuOutput": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HW2.fib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HW2.fib.dll": {}
+        }
+      },
+      "HW2.FIleReader/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "HW2.MenuOutput": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/HW2.FIleReader.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HW2.FIleReader.dll": {}
+        }
+      },
+      "HW2.HTMLReader/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/HW2.HTMLReader.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HW2.HTMLReader.dll": {}
+        }
+      },
+      "HW2.MenuOutput/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/HW2.MenuOutput.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HW2.MenuOutput.dll": {}
+        }
       }
     }
   },
@@ -61,10 +107,34 @@
         "lib/uap10.0/HtmlAgilityPack.pdb",
         "lib/uap10.0/HtmlAgilityPack.pri"
       ]
+    },
+    "HW2.fib/1.0.0": {
+      "type": "project",
+      "path": "../HW2.fib/HW2.fib.csproj",
+      "msbuildProject": "../HW2.fib/HW2.fib.csproj"
+    },
+    "HW2.FIleReader/1.0.0": {
+      "type": "project",
+      "path": "../HW2.FIleReader/HW2.FIleReader.csproj",
+      "msbuildProject": "../HW2.FIleReader/HW2.FIleReader.csproj"
+    },
+    "HW2.HTMLReader/1.0.0": {
+      "type": "project",
+      "path": "../HW2.HTMLReader/HW2.HTMLReader.csproj",
+      "msbuildProject": "../HW2.HTMLReader/HW2.HTMLReader.csproj"
+    },
+    "HW2.MenuOutput/1.0.0": {
+      "type": "project",
+      "path": "../HW2.MenuOutput/HW2.MenuOutput.csproj",
+      "msbuildProject": "../HW2.MenuOutput/HW2.MenuOutput.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "HW2.FIleReader >= 1.0.0",
+      "HW2.HTMLReader >= 1.0.0",
+      "HW2.MenuOutput >= 1.0.0",
+      "HW2.fib >= 1.0.0",
       "HtmlAgilityPack >= 1.11.43"
     ]
   },
@@ -99,7 +169,20 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.fib\\HW2.fib.csproj": {
+              "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.fib\\HW2.fib.csproj"
+            },
+            "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.FIleReader\\HW2.FIleReader.csproj": {
+              "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.FIleReader\\HW2.FIleReader.csproj"
+            },
+            "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.HTMLReader\\HW2.HTMLReader.csproj": {
+              "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.HTMLReader\\HW2.HTMLReader.csproj"
+            },
+            "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.MenuOutput\\HW2.MenuOutput.csproj": {
+              "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.MenuOutput\\HW2.MenuOutput.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

@@ -32,3 +32,11 @@ C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\obj\Debug\net5.0\HW2.genr
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\obj\Debug\net5.0\ref\HW2.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HtmlAgilityPack.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\obj\Debug\net5.0\HW2.csproj.CopyComplete
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.fib.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.FIleReader.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.HTMLReader.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.fib.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.FIleReader.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.HTMLReader.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.MenuOutput.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW2.MenuOutput.pdb

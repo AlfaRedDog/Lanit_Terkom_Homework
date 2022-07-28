@@ -1,0 +1,15 @@
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW2.fib.deps.json
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW2.fib.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW2.fib.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.csproj.AssemblyReference.cache
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.AssemblyInfoInputs.cache
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.AssemblyInfo.cs
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.csproj.CoreCompileInputs.cache
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\refint\HW2.fib.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\ref\HW2.fib.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW2.MenuOutput.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW2.MenuOutput.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.csproj.CopyComplete

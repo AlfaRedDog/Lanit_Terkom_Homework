@@ -1,0 +1,36 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "HW2.fib/1.0.0": {
+        "dependencies": {
+          "HW2.MenuOutput": "1.0.0"
+        },
+        "runtime": {
+          "HW2.fib.dll": {}
+        }
+      },
+      "HW2.MenuOutput/1.0.0": {
+        "runtime": {
+          "HW2.MenuOutput.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "HW2.fib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW2.MenuOutput/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

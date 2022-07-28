@@ -8,6 +8,10 @@
     ".NETCoreApp,Version=v5.0": {
       "HW2/1.0.0": {
         "dependencies": {
+          "HW2.FIleReader": "1.0.0",
+          "HW2.HTMLReader": "1.0.0",
+          "HW2.MenuOutput": "1.0.0",
+          "HW2.fib": "1.0.0",
           "HtmlAgilityPack": "1.11.43"
         },
         "runtime": {
@@ -20,6 +24,32 @@
             "assemblyVersion": "1.11.43.0",
             "fileVersion": "1.11.43.0"
           }
+        }
+      },
+      "HW2.fib/1.0.0": {
+        "dependencies": {
+          "HW2.MenuOutput": "1.0.0"
+        },
+        "runtime": {
+          "HW2.fib.dll": {}
+        }
+      },
+      "HW2.FIleReader/1.0.0": {
+        "dependencies": {
+          "HW2.MenuOutput": "1.0.0"
+        },
+        "runtime": {
+          "HW2.FIleReader.dll": {}
+        }
+      },
+      "HW2.HTMLReader/1.0.0": {
+        "runtime": {
+          "HW2.HTMLReader.dll": {}
+        }
+      },
+      "HW2.MenuOutput/1.0.0": {
+        "runtime": {
+          "HW2.MenuOutput.dll": {}
         }
       }
     }
@@ -36,6 +66,26 @@
       "sha512": "sha512-C2gpt+S2tdFlQMOC3DK7rHZ8iv6EpDuIo4v0UTUSGX1F1bZ+NAQ3gp77HK8/JfCDszUm3Y2rHoyTp/TpO4KOIA==",
       "path": "htmlagilitypack/1.11.43",
       "hashPath": "htmlagilitypack.1.11.43.nupkg.sha512"
+    },
+    "HW2.fib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW2.FIleReader/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW2.HTMLReader/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW2.MenuOutput/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }
