@@ -5,10 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-// возможно объеденить создание StreamReader в одном методе, чтобы не использовать одинаковые try catch в двух методах, но я в этом не уверен
-
-
 namespace HW2
 {
     public class FileReader : IFileReader
