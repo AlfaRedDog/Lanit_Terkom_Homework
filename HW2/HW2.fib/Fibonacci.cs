@@ -1,9 +1,6 @@
-﻿using System;
+﻿using HW2.MenuOut;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 
 namespace HW2
 {
@@ -14,13 +11,13 @@ namespace HW2
         public void PrintFibonacciSequence(int n)
         {
             if (n > fibonacciSequens.Count) { 
-                MenuOut.ColorWriteLine(ConsoleColor.Red, "Number is too large"); 
+                MenuOutput.ColorWriteLine(ConsoleColor.Red, "Number is too large"); 
                 return; 
             }
 
             for (int i = 0; i < n; i++)
             {
-                MenuOut.ColorWrite(ConsoleColor.Green, $"{fibonacciSequens[i]} ");
+                MenuOutput.ColorWrite(ConsoleColor.Green, $"{fibonacciSequens[i]} ");
             }
             Console.WriteLine();
         }

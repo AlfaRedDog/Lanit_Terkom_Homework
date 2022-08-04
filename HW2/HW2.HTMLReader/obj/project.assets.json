@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "HW2.MenuOutput/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/HW2.MenuOutput.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HW2.MenuOutput.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "HW2.MenuOutput/1.0.0": {
+      "type": "project",
+      "path": "../HW2.MenuOutput/HW2.MenuOutput.csproj",
+      "msbuildProject": "../HW2.MenuOutput/HW2.MenuOutput.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "HW2.MenuOutput >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\mikhail\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.MenuOutput\\HW2.MenuOutput.csproj": {
+              "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW2.MenuOutput\\HW2.MenuOutput.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

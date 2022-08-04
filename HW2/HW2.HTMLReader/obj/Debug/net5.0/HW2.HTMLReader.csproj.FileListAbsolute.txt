@@ -10,3 +10,6 @@ C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.HTMLReader\obj\Debug\net5
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.HTMLReader\obj\Debug\net5.0\refint\HW2.HTMLReader.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.HTMLReader\obj\Debug\net5.0\HW2.HTMLReader.pdb
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.HTMLReader\obj\Debug\net5.0\ref\HW2.HTMLReader.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.HTMLReader\bin\Debug\net5.0\HW2.MenuOutput.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.HTMLReader\bin\Debug\net5.0\HW2.MenuOutput.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.HTMLReader\obj\Debug\net5.0\HW2.HTMLReader.csproj.CopyComplete

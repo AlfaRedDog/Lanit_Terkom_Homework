@@ -7,22 +7,23 @@ using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Net.Sockets;
+using HW2.MenuOut;
 
 namespace HW2
 {
-    static class Menu
+    class Menu
     {
         delegate void SomeDelegat();
 
-        public static void MainMenu()
+        public void MainMenu()
         {
             try
             {
-                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Choose Operation:");
-                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "1 - Find Fibonacci number");
-                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "2 - Read File");
-                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "3 - Get HTML code from website");
-                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "exit - Close programm");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Choose Operation:");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "1 - Find Fibonacci number");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "2 - Read File");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "3 - Get HTML code from website");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "exit - Close programm");
                    
                 Console.ForegroundColor = ConsoleColor.Magenta;
                 string choose = Console.ReadLine();
@@ -33,20 +34,19 @@ namespace HW2
                     case "1": FibonacciMenu(); break;
                     case "2": ReadFileMenu(); break;
                     case "3": ReadURLMenu(); break;
-                    case "exit": MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Goodbye)"); return;
-                    default: MenuOut.ColorWriteLine(ConsoleColor.Red, "wrong code operation, try again"); break;
+                    case "exit": MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Goodbye)"); return;
+                    default: MenuOutput.ColorWriteLine(ConsoleColor.Red, "wrong code operation, try again"); break;
                 }
 
                 MainMenu();
             }
             catch(Exception ex)
             {
-                MenuOut.ColorWriteLine(ConsoleColor.Red, ex.Message);
-                MenuOut.ColorWriteLine(ConsoleColor.Red, ex.StackTrace);
+                MenuOutput.PrintInfoException("Unhandled exception", ex);
             }
         }
 
-        public static void FibonacciMenu()
+        public void FibonacciMenu()
         {
             Int32.TryParse(PrintRequestTakeResponse("Enter number:"), out int N);
             Fibonacci fibonacci = new Fibonacci();
@@ -56,7 +56,7 @@ namespace HW2
             ContinueActions(sd);
         }
 
-        public static void ReadFileMenu()
+        public void ReadFileMenu()
         {
             SomeDelegat sd = new SomeDelegat(ReadFileMenu);
             try
@@ -75,24 +75,10 @@ namespace HW2
 
                 if (Int32.TryParse(countLines, out int a))
                     fileReader.ReadNLines(path, a);
-                else
-                    throw new FormatException();
             }
             catch (FormatException ex)
             {
-                MenuOut.ColorWriteLine(ConsoleColor.Red, "Wrong format of count lines, try again");
-            }
-            catch (DirectoryNotFoundException ex)
-            { 
-                MenuOut.ColorWriteLine(ConsoleColor.Red, "Wrong directory, try again");
-            }
-            catch(FileNotFoundException ex)
-            {
-                MenuOut.ColorWriteLine(ConsoleColor.Red, "Wrong file, try again");
-            }
-            catch(ArgumentException ex)
-            {
-                MenuOut.ColorWriteLine(ConsoleColor.Red, "path is empty, try again");
+                MenuOutput.PrintInfoException("Wrong format of count lines, try again", ex);
             }
             finally
             {
@@ -100,12 +86,12 @@ namespace HW2
             }
         }
 
-        public static void ReadURLMenu()
+        public void ReadURLMenu()
         {
             SomeDelegat sd = new SomeDelegat(ReadURLMenu);
             try
             {
-                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Enter website URL:");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Enter website URL:");
                 //https://google.com
                 //https://alfareddog.github.io/
 
@@ -113,7 +99,7 @@ namespace HW2
                 string urlAdress = Console.ReadLine();
                 if (urlAdress.Equals("main menu")) return;
 
-                MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Enter path to file:");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Enter path to file:");
                 //C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\HTMLfile.html
 
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -124,43 +110,15 @@ namespace HW2
                 HTMLReader reader = new HTMLReader();
                 reader.ReadAndWriteHtmlToFile(urlAdress, path);
             }
-            catch(InvalidOperationException ex)
-            {
-                MenuOut.PrintInfoException("Wrong URL, try again", ex);
-            }
-            catch (ArgumentException ex)
-            {
-                MenuOut.PrintInfoException("Argument excepton", ex);
-            }
-            catch (HttpRequestException ex)
-            {
-                MenuOut.PrintInfoException("The host of this url is unknown, try again", ex);
-            }
-            catch(SocketException ex)
-            {
-                MenuOut.PrintInfoException("The host of this url is unknown, try again", ex);
-            }
-            catch(AggregateException ex)
-            {
-                MenuOut.PrintInfoException("Wrong URL, try again", ex);
-            }
-            catch (DirectoryNotFoundException ex)
-            {
-                MenuOut.PrintInfoException("Wrong directory, try again", ex);
-            }
-            catch (FileNotFoundException ex)
-            {
-                MenuOut.PrintInfoException("Wrong file, try again", ex);
-            }
             finally
             {
                 ContinueActions(sd);
             }
         }
 
-        private static void ContinueActions(SomeDelegat sd)
+        private void ContinueActions(SomeDelegat sd)
         {
-            MenuOut.ColorWriteLine(ConsoleColor.Yellow, "Continue actions? Y/N");
+            MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Continue actions? Y/N");
 
             Console.ForegroundColor = ConsoleColor.Magenta;
             string choose = Console.ReadLine();
@@ -177,13 +135,13 @@ namespace HW2
                 case "Yes":
                 case "yes": sd.Invoke(); break;
 
-                default: MenuOut.ColorWriteLine(ConsoleColor.Red, "Wrong format answer, try again"); ContinueActions(sd); break;
+                default: MenuOutput.ColorWriteLine(ConsoleColor.Red, "Wrong format answer, try again"); ContinueActions(sd); break;
             }
         }
 
-        private static string PrintRequestTakeResponse(string info)
+        private string PrintRequestTakeResponse(string info)
         {
-            MenuOut.ColorWriteLine(ConsoleColor.Yellow, info);
+            MenuOutput.ColorWriteLine(ConsoleColor.Yellow, info);
 
             Console.ForegroundColor = ConsoleColor.Magenta;
             string answer = Console.ReadLine();

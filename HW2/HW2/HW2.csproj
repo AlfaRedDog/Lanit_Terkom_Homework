@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -14,6 +14,8 @@
     <ProjectReference Include="..\HW2.FIleReader\HW2.FIleReader.csproj" />
     <ProjectReference Include="..\HW2.HTMLReader\HW2.HTMLReader.csproj" />
     <ProjectReference Include="..\HW2.MenuOutput\HW2.MenuOutput.csproj" />
+    <ProjectReference Include="..\HW3.CRUD\HW3.CRUD.csproj" />
+    <ProjectReference Include="..\HW3.Records\HW3.Records.csproj" />
   </ItemGroup>
 
 </Project>

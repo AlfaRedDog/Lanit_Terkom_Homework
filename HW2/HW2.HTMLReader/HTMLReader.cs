@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HW2.MenuOut;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -35,9 +36,33 @@ namespace HW2
                     }
                 }
             }
-            catch (Exception ex)
+            catch (InvalidOperationException ex)
             {
-                throw;
+                MenuOutput.PrintInfoException("Wrong URL, try again", ex);
+            }
+            catch (ArgumentException ex)
+            {
+                MenuOutput.PrintInfoException("Argument excepton", ex);
+            }
+            catch (HttpRequestException ex)
+            {
+                MenuOutput.PrintInfoException("The host of this url is unknown, try again", ex);
+            }
+            catch (SocketException ex)
+            {
+                MenuOutput.PrintInfoException("The host of this url is unknown, try again", ex);
+            }
+            catch (AggregateException ex)
+            {
+                MenuOutput.PrintInfoException("Wrong URL, try again", ex);
+            }
+            catch (DirectoryNotFoundException ex)
+            {
+                MenuOutput.PrintInfoException("Wrong directory, try again", ex);
+            }
+            catch (FileNotFoundException ex)
+            {
+                MenuOutput.PrintInfoException("Wrong file, try again", ex);
             }
         }   
     }
