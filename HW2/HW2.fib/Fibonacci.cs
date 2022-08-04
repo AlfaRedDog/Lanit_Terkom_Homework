@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-
-namespace HW2
+namespace HW2.fib
 {
     public class Fibonacci : IFibonacci
     {

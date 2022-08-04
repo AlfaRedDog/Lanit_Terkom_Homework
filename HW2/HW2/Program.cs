@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HW2
 {
@@ -6,7 +7,8 @@ namespace HW2
     {
         static void Main(string[] args)
         {
-            Menu.MainMenu();
+            Menu menu = new Menu();
+            menu.RunMainMenu();
         }
     }
 }
