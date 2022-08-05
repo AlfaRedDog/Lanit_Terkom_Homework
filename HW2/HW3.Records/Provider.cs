@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HW3.Records
 {
     public class Provider : IRecord
     {
+        public Provider(List<string> values)
+        {
+            Id = Guid.Parse(values[0]);
+            Name = values[1];
+            Adress = values[2];
+        }
+
         public Provider(string name, string adress)
         {
             Id = Guid.NewGuid();

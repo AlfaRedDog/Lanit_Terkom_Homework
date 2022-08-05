@@ -15,8 +15,16 @@
         }
       },
       "HW2.MenuOutput/1.0.0": {
+        "dependencies": {
+          "HW3.Records": "1.0.0"
+        },
         "runtime": {
           "HW2.MenuOutput.dll": {}
+        }
+      },
+      "HW3.Records/1.0.0": {
+        "runtime": {
+          "HW3.Records.dll": {}
         }
       }
     }
@@ -28,6 +36,11 @@
       "sha512": ""
     },
     "HW2.MenuOutput/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW3.Records/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

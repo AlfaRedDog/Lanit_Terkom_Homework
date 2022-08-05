@@ -92,6 +92,9 @@
       },
       "System.Security.Principal.Windows/4.7.0": {},
       "HW2.MenuOutput/1.0.0": {
+        "dependencies": {
+          "HW3.Records": "1.0.0"
+        },
         "runtime": {
           "HW2.MenuOutput.dll": {}
         }

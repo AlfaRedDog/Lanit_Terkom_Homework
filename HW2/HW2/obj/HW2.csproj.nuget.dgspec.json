@@ -217,7 +217,11 @@
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Records.csproj": {
+                "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Records.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

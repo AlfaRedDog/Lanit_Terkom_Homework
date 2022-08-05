@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Sockets;
 using HW2.MenuOut;
+using HW3.CRUD;
 
 namespace HW2
 {
@@ -23,6 +17,7 @@ namespace HW2
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "1 - Find Fibonacci number");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "2 - Read File");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "3 - Get HTML code from website");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "4 - Work with ShopDB");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "exit - Close programm");
                    
                 Console.ForegroundColor = ConsoleColor.Magenta;
@@ -34,6 +29,7 @@ namespace HW2
                     case "1": FibonacciMenu(); break;
                     case "2": ReadFileMenu(); break;
                     case "3": ReadURLMenu(); break;
+                    case "4": CRUDDatabaseMenu(); break;
                     case "exit": MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Goodbye)"); return;
                     default: MenuOutput.ColorWriteLine(ConsoleColor.Red, "wrong code operation, try again"); break;
                 }
@@ -112,6 +108,97 @@ namespace HW2
             }
             finally
             {
+                ContinueActions(sd);
+            }
+        }
+
+        public void CRUDDatabaseMenu()
+        {
+            SomeDelegat sd = new SomeDelegat(CRUDDatabaseMenu);
+            try
+            {
+                List<string> tables = CRUD.tables;
+                tables.Remove("sysdiagrams");
+
+                for (int i = 1; i <= tables.Count; i++)
+                {
+                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"{i} - {tables[i - 1]}");
+                }
+
+                Int32.TryParse(PrintRequestTakeResponse("Choose code of the table:"), out int choice);
+                string tableName = "";
+
+                if ((choice < tables.Count) && (choice > 0))
+                {
+                    tableName = tables[choice - 1];
+                }
+                else
+                {
+                    MenuOutput.ColorWriteLine(ConsoleColor.Red, "Wrong code of the table");
+                    ContinueActions(sd);
+                }
+
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"1 - SELECT * FROM {tableName} WHERE !column!=!value!");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"2 - UPDATE {tableName} SET !column!=!value! WHERE Id = !id!");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"3 - DELETE FROM {tableName} WHERE !column!=!value!");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"4 - INSERT INTO {tableName} VALUES (");
+                Int32.TryParse(PrintRequestTakeResponse("Choose code of the table:"), out choice);
+                
+                CRUD crud = new();
+                List<string> columns = crud.GetColumns(tableName);
+                if ((choice < 4) && (choice > 0))
+                {
+                    for (int i = 0; i < columns.Count; i++)
+                    {
+                        MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"{i} - {columns[i]}");
+                    }
+                    bool flag = Int32.TryParse(PrintRequestTakeResponse("Choose code of the !column!:"), out int index);
+                    if((index >= columns.Count) || (index < 0) || (!flag))
+                    {
+                        MenuOutput.ColorWriteLine(ConsoleColor.Red, "Wrong code of column");
+                        ContinueActions(sd);
+                    }
+
+                    string columnName = columns[index];
+                    string value = PrintRequestTakeResponse("Enter !value!");
+
+                    if (choice == 1)
+                    {
+                        MenuOutput.PrintListOfIRecord(crud.ReadRecord(value, columnName, tableName));
+                    }
+                    if (choice == 2)
+                    {
+                        Guid.TryParse(PrintRequestTakeResponse("Enter Id to update:"), out Guid id);
+                        if(id == Guid.Empty)
+                        {
+                            MenuOutput.ColorWriteLine(ConsoleColor.Red, "Wrong id format");
+                            ContinueActions(sd);
+                        }
+                        crud.UpdateRecord(id, columnName, value, tableName);
+                    }
+                    if (choice == 3)
+                    {
+                        crud.DeleteRecord(value, columnName, tableName);
+                    }
+                }
+                else if (choice == 4)
+                {
+                    List<string> values = new();
+                    for (int i = 0; i < columns.Count; i++)
+                    {
+                        values.Add(PrintRequestTakeResponse($"Enter {columns[i]} value: "));
+                    }
+                    crud.CreateRecord(crud.ParseListToIRecord(tableName, values), tableName);
+                }
+                else
+                {
+                    MenuOutput.ColorWriteLine(ConsoleColor.Red, "Wrong code of operation");
+                }
+                ContinueActions(sd);
+            }
+            catch(Exception ex)
+            {
+                MenuOutput.PrintInfoException("SQL exception", ex);
                 ContinueActions(sd);
             }
         }

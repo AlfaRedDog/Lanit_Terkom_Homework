@@ -1,9 +1,7 @@
 ﻿using HW3.Records;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Data.SqlClient;
 
 namespace HW3.CRUD
 {
@@ -15,6 +13,13 @@ namespace HW3.CRUD
 
         public void DeleteRecord<T>(T value, string column, string nameOfTable);
 
-        public void ReadRecord<T>(T value, string column, string nameOfTable);
+        public List<IRecord> ReadRecord<T>(T value, string column, string nameOfTable);
+
+        public void ClearTable(string nameOfTable);
+
+        public List<string> GetColumns(string tableName);
+
+        public void ExecuteQuery(string sqlQuery, SqlConnection conn);
+
     }
 }

@@ -11,122 +11,120 @@ namespace HW3.CRUD
     {
         private const string _connString = "Server=localhost\\sqlexpress;Database=ShopDB;Trusted_Connection=True";
 
+        public static List<string> tables = GetTables();
+
         public void CreateRecord(IRecord record, string nameOfTable)
         {
-            string sqlQuery = $"INSERT INTO {nameOfTable} VALUES (";
-
-            foreach (var prop in record.GetType().GetProperties())
+            try
             {
-                if (prop.PropertyType != typeof(int))
+                string sqlQuery = $"INSERT INTO {nameOfTable} VALUES (";
+
+                foreach (var prop in record.GetType().GetProperties())
                 {
                     sqlQuery += $"'{prop.GetValue(record, null)}', ";
                 }
-                else
-                {
-                    sqlQuery += $"{prop.GetValue(record, null)}, ";
-                }
+                sqlQuery = sqlQuery.Remove(sqlQuery.Length - 2) + ")";
+                
+                SqlConnection conn = new SqlConnection(_connString);
+                ExecuteQuery(sqlQuery, conn);
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
             }
-            sqlQuery = sqlQuery.Remove(sqlQuery.Length - 2) + ")";
-
-            SqlConnection conn = new SqlConnection(_connString);
-            ExecuteQuery(sqlQuery, conn);
+            catch(Exception ex)
+            {
+                MenuOutput.PrintInfoException("CreateRecord exception", ex);
+            }
         }
 
         public void DeleteRecord<T>(T value, string column, string nameOfTable)
         {
-            string sqlQuery = "";
-            if (value is string || value is Guid || value is DateTime)
+            try
             {
-                sqlQuery = $"DELETE FROM {nameOfTable} WHERE {column}='{value}'";
+                string sqlQuery = $"DELETE FROM {nameOfTable} WHERE {column}='{value}'";
+                
+                if (!string.IsNullOrEmpty(sqlQuery))
+                {
+                    SqlConnection conn = new SqlConnection(_connString);
+                    ExecuteQuery(sqlQuery, conn);
+                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
+                }
+                else
+                {
+                    MenuOutput.ColorWriteLine(ConsoleColor.Red, "incorrect value");
+                }
             }
-            if (value is Int32)
+            catch(Exception ex)
             {
-                sqlQuery = $"DELETE FROM {nameOfTable} WHERE {column}={value}";
-            }
-
-            if (!string.IsNullOrEmpty(sqlQuery))
-            {
-                SqlConnection conn = new SqlConnection(_connString);
-                ExecuteQuery(sqlQuery, conn);
-            }
-            else
-            {
-                MenuOutput.ColorWriteLine(ConsoleColor.Red, "incorrect value");
+                MenuOutput.PrintInfoException("DeleteRecord exception", ex);
             }
         }
 
-        public void ReadRecord<T>(T value, string column, string nameOfTable)
+        public List<IRecord> ReadRecord<T>(T value, string column, string nameOfTable)
         {
             SqlConnection conn = new SqlConnection(_connString);
-            conn.Open();
+            try
+            {
+                conn.Open();
 
-            string sqlQuery = "";
-            if (value is string || value is Guid || value is DateTime)
-            {
-                sqlQuery = $"SELECT * FROM {nameOfTable} WHERE {column}='{value}'";
-            }
-            if (value is Int32)
-            {
-                sqlQuery = $"SELECT * FROM {nameOfTable} WHERE {column}={value}";
-            }
-
-            if (!string.IsNullOrEmpty(sqlQuery))
-            {
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
+                string sqlQuery = $"SELECT * FROM {nameOfTable} WHERE {column}='{value}'";
+                if (!string.IsNullOrEmpty(sqlQuery))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
                     {
-                        DataTable schemaTable = reader.GetSchemaTable();
-
-                        List<string> columns = new();
-                        foreach (DataRow row in schemaTable.Rows)
+                        using (SqlDataReader reader = cmd.ExecuteReader())
                         {
-                            foreach (DataColumn colum in schemaTable.Columns)
+                            List<IRecord> result = new();
+
+                            while (reader.Read())
                             {
-                                if (colum.ColumnName == "ColumnName")
+                                List<string> row = new();
+                                for(int i = 0; i < reader.FieldCount; i++)
                                 {
-                                    columns.Add(row[colum].ToString());
+                                    row.Add(reader.GetValue(i).ToString());
                                 }
+                                result.Add(ParseListToIRecord(nameOfTable, row));
                             }
-                        }
-
-                        while (reader.Read())
-                        {
-                            foreach (string colum in columns)
-                            {
-                                Console.WriteLine(reader[colum]);
-                            }
+                            MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
+                            return result;
                         }
                     }
                 }
+                else
+                {
+                    MenuOutput.ColorWriteLine(ConsoleColor.Red, "incorrect value");
+                    return null;
+                }
             }
-            else
+            catch(Exception ex)
             {
-                MenuOutput.ColorWriteLine(ConsoleColor.Red, "incorrect value");
+                MenuOutput.PrintInfoException("ReadRecord exception", ex);
+                return null;
             }
-            conn.Close();
+            finally
+            {
+                conn.Close();
+            }
         }
 
         public void UpdateRecord<T>(Guid id, string column, T value, string nameOfTable)
         {
-            string sqlQuery = "";
-            if (value is string || value is Guid || value is DateTime)
+            try
             {
-                sqlQuery = $"UPDATE {nameOfTable} SET {column} = '{value}' WHERE Id = '{id}'";
+                string sqlQuery = $"UPDATE {nameOfTable} SET {column} = '{value}' WHERE Id = '{id}'";
+                
+                if (!string.IsNullOrEmpty(sqlQuery))
+                {
+                    SqlConnection conn = new SqlConnection(_connString);
+                    ExecuteQuery(sqlQuery, conn);
+                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
+                }
+                else
+                {
+                    MenuOutput.ColorWriteLine(ConsoleColor.Red, "incorrect value");
+                }
             }
-            if (value is Int32)
+            catch(Exception ex)
             {
-                sqlQuery = $"UPDATE {nameOfTable} SET {column} = {value} WHERE Id = '{id}'";
-            }
-
-            if(!string.IsNullOrEmpty(sqlQuery))
-            {
-                SqlConnection conn = new SqlConnection(_connString);
-                ExecuteQuery(sqlQuery, conn);
-            }
-            else
-            {
-                MenuOutput.ColorWriteLine(ConsoleColor.Red, "incorrect value");
+                MenuOutput.PrintInfoException("UpdateRecord exception", ex);
             }
             
         }
@@ -137,14 +135,78 @@ namespace HW3.CRUD
             ExecuteQuery($"DELETE FROM {nameOfTable}", conn);
         }
 
+        public static List<string> GetTables()
+        {
+            using (SqlConnection connection = new SqlConnection(_connString))
+            {
+                connection.Open();
+                DataTable schema = connection.GetSchema("Tables");
+                List<string> TableNames = new List<string>();
+
+                foreach (DataRow row in schema.Rows)
+                {
+                    TableNames.Add(row[2].ToString());
+                }
+                connection.Close();
+                return TableNames;
+            }
+        }
+
+        public IRecord ParseListToIRecord(string tableName, List<string> values)
+        {
+            IRecord record = null;
+            switch (tableName)
+            {
+                case "Items": record = new Item(values); return record;
+                case "Customers": record = new Customer(values); return record;
+                case "Orders": record = new Order(values); return record;
+                case "Providers": record = new Provider(values); return record;
+                default: throw new ArgumentException("Name of table is wrong");
+            }
+        }
+
         public void ExecuteQuery(string sqlQuery, SqlConnection conn)
         {
+            try
+            {
+                conn.Open();
+                using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
+                {
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+            catch(Exception ex)
+            {
+                MenuOutput.PrintInfoException("ExecuteQuery exception", ex);
+            }
+        }
+
+        public List<string> GetColumns(string tableName)
+        {
+            string sqlQuery = $"SELECT * FROM {tableName} WHERE 1=0";
+            SqlConnection conn = new SqlConnection(_connString);
             conn.Open();
+            List<string> columns = new();
             using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
             {
-                cmd.ExecuteNonQuery();
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    DataTable schemaTable = reader.GetSchemaTable();
+                    foreach (DataRow row in schemaTable.Rows)
+                    {
+                        foreach (DataColumn colum in schemaTable.Columns)
+                        {
+                            if (colum.ColumnName == "ColumnName")
+                            {
+                                columns.Add(row[colum].ToString());
+                            }
+                        }
+                    }
+                }
             }
             conn.Close();
+            return columns;
         }
     }
 }
