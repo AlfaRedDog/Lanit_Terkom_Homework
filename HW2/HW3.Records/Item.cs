@@ -5,6 +5,10 @@ namespace HW3.Records
 {
     public class Item : IRecord
     {
+        public Item()
+        {
+        }
+
         public Item(List<string> values)
         {
             Id = Guid.Parse(values[0]);

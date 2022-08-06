@@ -1,4 +1,7 @@
-﻿namespace HW2
+﻿using HW3.CRUD;
+using System;
+
+namespace HW2
 {
     internal class Program
     {

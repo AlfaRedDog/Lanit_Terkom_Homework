@@ -13,21 +13,23 @@ namespace HW3.CRUD
 
         public static List<string> tables = GetTables();
 
-        public void CreateRecord(IRecord record, string nameOfTable)
+        public void CreateRecord(IRecord record, string tableName, string sqlQuery = "")
         {
             try
             {
-                string sqlQuery = $"INSERT INTO {nameOfTable} VALUES (";
-
-                foreach (var prop in record.GetType().GetProperties())
+                if (sqlQuery == "")
                 {
-                    sqlQuery += $"'{prop.GetValue(record, null)}', ";
+                    sqlQuery = $"INSERT INTO {tableName} VALUES (";
+
+                    foreach (var prop in record.GetType().GetProperties())
+                    {
+                        sqlQuery += $"'{prop.GetValue(record, null)}', ";
+                    }
+                    sqlQuery = sqlQuery.Remove(sqlQuery.Length - 2) + ")";
                 }
-                sqlQuery = sqlQuery.Remove(sqlQuery.Length - 2) + ")";
-                
+
                 SqlConnection conn = new SqlConnection(_connString);
                 ExecuteQuery(sqlQuery, conn);
-                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
             }
             catch(Exception ex)
             {
@@ -35,17 +37,19 @@ namespace HW3.CRUD
             }
         }
 
-        public void DeleteRecord<T>(T value, string column, string nameOfTable)
+        public void DeleteRecord<T>(T value, string column, string tableName, string sqlQuery = "")
         {
             try
             {
-                string sqlQuery = $"DELETE FROM {nameOfTable} WHERE {column}='{value}'";
-                
+                if (sqlQuery == "")
+                {
+                    sqlQuery = $"DELETE FROM {tableName} WHERE {column}='{value}'";
+                }
+
                 if (!string.IsNullOrEmpty(sqlQuery))
                 {
                     SqlConnection conn = new SqlConnection(_connString);
                     ExecuteQuery(sqlQuery, conn);
-                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                 }
                 else
                 {
@@ -58,14 +62,17 @@ namespace HW3.CRUD
             }
         }
 
-        public List<IRecord> ReadRecord<T>(T value, string column, string nameOfTable)
+        public List<IRecord> ReadRecord<T>(T value, string column, string tableName, string sqlQuery = "")
         {
             SqlConnection conn = new SqlConnection(_connString);
             try
             {
                 conn.Open();
+                if (sqlQuery == "")
+                {
+                    sqlQuery = $"SELECT * FROM {tableName} WHERE {column}='{value}'";
+                }
 
-                string sqlQuery = $"SELECT * FROM {nameOfTable} WHERE {column}='{value}'";
                 if (!string.IsNullOrEmpty(sqlQuery))
                 {
                     using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
@@ -81,9 +88,8 @@ namespace HW3.CRUD
                                 {
                                     row.Add(reader.GetValue(i).ToString());
                                 }
-                                result.Add(ParseListToIRecord(nameOfTable, row));
+                                result.Add(ParseListToIRecord(tableName, row));
                             }
-                            MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                             return result;
                         }
                     }
@@ -105,17 +111,17 @@ namespace HW3.CRUD
             }
         }
 
-        public void UpdateRecord<T>(Guid id, string column, T value, string nameOfTable)
+        public void UpdateRecord<T>(Guid id, string column, T value, string tableName, string sqlQuery = "")
         {
             try
             {
-                string sqlQuery = $"UPDATE {nameOfTable} SET {column} = '{value}' WHERE Id = '{id}'";
+                if(sqlQuery == "")
+                    sqlQuery = $"UPDATE {tableName} SET {column} = '{value}' WHERE Id = '{id}'";
                 
                 if (!string.IsNullOrEmpty(sqlQuery))
                 {
                     SqlConnection conn = new SqlConnection(_connString);
                     ExecuteQuery(sqlQuery, conn);
-                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                 }
                 else
                 {
@@ -129,11 +135,39 @@ namespace HW3.CRUD
             
         }
 
-        public void ClearTable(string nameOfTable)
+        public void ClearTable(string tableName)
         {
             SqlConnection conn = new SqlConnection(_connString);
-            ExecuteQuery($"DELETE FROM {nameOfTable}", conn);
+            ExecuteQuery($"DELETE FROM {tableName}", conn);
         }
+
+        public List<IRecord> AnyQueryCrud(string sqlQuery, string tableName)
+        {
+            if (sqlQuery.Contains("DELETE"))
+            {
+                DeleteRecord<int>(0, "", tableName, sqlQuery);
+                return null;
+            }
+
+            if (sqlQuery.Contains("INSERT"))
+            {
+                CreateRecord(new Item(), tableName, sqlQuery);
+                return null;
+            }
+
+            if (sqlQuery.Contains("UPDATE"))
+            {
+                UpdateRecord<int>(Guid.Empty, "", 0, tableName, sqlQuery);
+                return null;
+            }
+
+            if (sqlQuery.Contains("SELECT"))
+            {
+                return ReadRecord<int>(0, "", tableName, sqlQuery);
+            }
+            return null;
+        }
+        //any SELECT, DELETE, UPDATE, INSERT maybe
 
         public static List<string> GetTables()
         {
@@ -154,7 +188,7 @@ namespace HW3.CRUD
 
         public IRecord ParseListToIRecord(string tableName, List<string> values)
         {
-            IRecord record = null;
+            IRecord record;
             switch (tableName)
             {
                 case "Items": record = new Item(values); return record;
@@ -185,14 +219,17 @@ namespace HW3.CRUD
         public List<string> GetColumns(string tableName)
         {
             string sqlQuery = $"SELECT * FROM {tableName} WHERE 1=0";
+
             SqlConnection conn = new SqlConnection(_connString);
             conn.Open();
+
             List<string> columns = new();
             using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
             {
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     DataTable schemaTable = reader.GetSchemaTable();
+
                     foreach (DataRow row in schemaTable.Rows)
                     {
                         foreach (DataColumn colum in schemaTable.Columns)
@@ -205,6 +242,7 @@ namespace HW3.CRUD
                     }
                 }
             }
+
             conn.Close();
             return columns;
         }

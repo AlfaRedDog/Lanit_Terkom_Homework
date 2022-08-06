@@ -30,14 +30,31 @@ namespace HW2.MenuOut
 
         public static void PrintListOfIRecord(List<IRecord> rows)
         {
-            foreach(IRecord row in rows)
+            if (ReferenceEquals(rows, null))
+            {
+                ColorWriteLine(ConsoleColor.Red, "null rows are found");
+                return;
+            }
+
+            foreach (IRecord row in rows)
             {
                 foreach (var prop in row.GetType().GetProperties())
                 {
-                   ColorWrite(ConsoleColor.Green, $"{prop.GetValue(row, null)} ");
+                    ColorWrite(ConsoleColor.Green, $"{prop.GetValue(row, null)} ");
                 }
                 Console.WriteLine();
             }
+        }
+
+        public static void PrintList<T>(List<T> list, ConsoleColor color = ConsoleColor.Yellow)
+        {
+            Console.ForegroundColor = color;
+            foreach(var item in list)
+            {
+                Console.Write($"{item} ");
+            }
+            Console.WriteLine();
+            Console.ResetColor();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using HW2.MenuOut;
 using HW3.CRUD;
+using HW3.Records;
 
 namespace HW2
 {
@@ -128,7 +129,7 @@ namespace HW2
                 Int32.TryParse(PrintRequestTakeResponse("Choose code of the table:"), out int choice);
                 string tableName = "";
 
-                if ((choice < tables.Count) && (choice > 0))
+                if ((choice <= tables.Count) && (choice > 0))
                 {
                     tableName = tables[choice - 1];
                 }
@@ -142,6 +143,8 @@ namespace HW2
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"2 - UPDATE {tableName} SET !column!=!value! WHERE Id = !id!");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"3 - DELETE FROM {tableName} WHERE !column!=!value!");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"4 - INSERT INTO {tableName} VALUES (");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"5 - SELECT * FROM {tableName}");
+                MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"6 - User Query with SELECT or DELETE or INSERT or UPDATE");
                 Int32.TryParse(PrintRequestTakeResponse("Choose code of the table:"), out choice);
                 
                 CRUD crud = new();
@@ -161,10 +164,17 @@ namespace HW2
 
                     string columnName = columns[index];
                     string value = PrintRequestTakeResponse("Enter !value!");
+                    if(ReferenceEquals(value, null))
+                    {
+                        MenuOutput.ColorWriteLine(ConsoleColor.Red, "value cannot be empty");
+                        ContinueActions(sd);
+                    }
 
                     if (choice == 1)
                     {
+                        MenuOutput.PrintList(crud.GetColumns(tableName), ConsoleColor.Green);
                         MenuOutput.PrintListOfIRecord(crud.ReadRecord(value, columnName, tableName));
+                        MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                     }
                     if (choice == 2)
                     {
@@ -175,11 +185,14 @@ namespace HW2
                             ContinueActions(sd);
                         }
                         crud.UpdateRecord(id, columnName, value, tableName);
+                        MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                     }
                     if (choice == 3)
                     {
                         crud.DeleteRecord(value, columnName, tableName);
+                        MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                     }
+
                 }
                 else if (choice == 4)
                 {
@@ -189,6 +202,25 @@ namespace HW2
                         values.Add(PrintRequestTakeResponse($"Enter {columns[i]} value: "));
                     }
                     crud.CreateRecord(crud.ParseListToIRecord(tableName, values), tableName);
+                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
+
+                }
+                else if(choice == 5)
+                {
+                    MenuOutput.PrintList(crud.GetColumns(tableName), ConsoleColor.Green);
+                    MenuOutput.PrintListOfIRecord(crud.ReadRecord(0, "", tableName, $"SELECT * FROM {tableName}"));
+                    //написать корректно
+                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
+
+                }else if(choice == 6)
+                {
+                    List<IRecord> records = crud.AnyQueryCrud(PrintRequestTakeResponse("Enter sql query"), tableName);
+
+                    if(!ReferenceEquals(records, null))
+                    {
+                        MenuOutput.PrintListOfIRecord(records);
+                    }
+                    MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                 }
                 else
                 {
