@@ -314,6 +314,10 @@
             "HtmlAgilityPack": {
               "target": "Package",
               "version": "[1.11.43, )"
+            },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.3, )"
             }
           },
           "imports": [
