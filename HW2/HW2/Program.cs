@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using HW2;
 
-namespace HW2
-{
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Menu menu = new Menu();
-            menu.RunMainMenu();
-        }
-    }
-}
+Menu menu = new();
+menu.MainMenu();

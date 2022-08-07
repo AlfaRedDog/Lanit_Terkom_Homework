@@ -1,7 +1,8 @@
-﻿using System;
+﻿using HW2.MenuOut;
+using System;
 using System.Collections.Generic;
 
-namespace HW2.fib
+namespace HW2
 {
     public class Fibonacci : IFibonacci
     {
@@ -10,13 +11,13 @@ namespace HW2.fib
         public void PrintFibonacciSequence(int n)
         {
             if (n > fibonacciSequens.Count) { 
-                MenuOut.ColorWriteLine(ConsoleColor.Red, "Number is too large"); 
+                MenuOutput.ColorWriteLine(ConsoleColor.Red, "Number is too large"); 
                 return; 
             }
 
             for (int i = 0; i < n; i++)
             {
-                MenuOut.ColorWrite(ConsoleColor.Green, $"{fibonacciSequens[i]} ");
+                MenuOutput.ColorWrite(ConsoleColor.Green, $"{fibonacciSequens[i]} ");
             }
             Console.WriteLine();
         }

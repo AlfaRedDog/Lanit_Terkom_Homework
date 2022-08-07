@@ -4,4 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HW3.Records\HW3.Records.csproj" />
+  </ItemGroup>
+
 </Project>

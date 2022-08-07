@@ -12,8 +12,9 @@
           "HW2.HTMLReader": "1.0.0",
           "HW2.MenuOutput": "1.0.0",
           "HW2.fib": "1.0.0",
-          "HtmlAgilityPack": "1.11.43",
-          "System.Data.SqlClient": "4.8.3"
+          "HW3.CRUD": "1.0.0",
+          "HW3.Records": "1.0.0",
+          "HtmlAgilityPack": "1.11.43"
         },
         "runtime": {
           "HW2.dll": {}
@@ -119,13 +120,34 @@
         }
       },
       "HW2.HTMLReader/1.0.0": {
+        "dependencies": {
+          "HW2.MenuOutput": "1.0.0"
+        },
         "runtime": {
           "HW2.HTMLReader.dll": {}
         }
       },
       "HW2.MenuOutput/1.0.0": {
+        "dependencies": {
+          "HW3.Records": "1.0.0"
+        },
         "runtime": {
           "HW2.MenuOutput.dll": {}
+        }
+      },
+      "HW3.CRUD/1.0.0": {
+        "dependencies": {
+          "HW2.MenuOutput": "1.0.0",
+          "HW3.Records": "1.0.0",
+          "System.Data.SqlClient": "4.8.3"
+        },
+        "runtime": {
+          "HW3.CRUD.dll": {}
+        }
+      },
+      "HW3.Records/1.0.0": {
+        "runtime": {
+          "HW3.Records.dll": {}
         }
       }
     }
@@ -222,6 +244,16 @@
       "sha512": ""
     },
     "HW2.MenuOutput/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW3.CRUD/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW3.Records/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

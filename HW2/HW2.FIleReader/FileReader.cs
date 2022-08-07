@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using HW2.MenuOut;
 
 namespace HW2
 {
@@ -23,11 +24,11 @@ namespace HW2
             }
             catch (FileNotFoundException ex)
             {
-                MenuOut.PrintInfoException("Wrong file, try again", ex);
+                MenuOutput.PrintInfoException("Wrong file, try again", ex);
             }
             catch (DirectoryNotFoundException ex)
             {
-                MenuOut.PrintInfoException("Wrong directory, try again", ex);
+                MenuOutput.PrintInfoException("Wrong directory, try again", ex);
             }
         }
 
@@ -41,7 +42,7 @@ namespace HW2
 
                     for (int i = 0; i < n && line != null; i++)
                     { 
-                        MenuOut.ColorWriteLine(ConsoleColor.Green, line);
+                        MenuOutput.ColorWriteLine(ConsoleColor.Green, line);
                         line = sr.ReadLine();
                     }
                     sr.Close();
@@ -49,15 +50,15 @@ namespace HW2
             }
             catch(ArgumentException ex)
             {
-                MenuOut.PrintInfoException("Wrong path, try again", ex);
+                MenuOutput.PrintInfoException("Wrong path, try again", ex);
             }
             catch(FileNotFoundException ex)
             {
-                MenuOut.PrintInfoException("Wrong file, try again", ex);
+                MenuOutput.PrintInfoException("Wrong file, try again", ex);
             }
             catch(DirectoryNotFoundException ex)
             {
-                MenuOut.PrintInfoException("Wrong directory, try again", ex);
+                MenuOutput.PrintInfoException("Wrong directory, try again", ex);
             }
         }
     }

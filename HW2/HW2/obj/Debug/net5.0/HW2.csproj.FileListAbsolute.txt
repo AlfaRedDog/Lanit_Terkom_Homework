@@ -46,3 +46,7 @@ C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\runtimes
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\runtimes\win-x86\native\sni.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW3.CRUD.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW3.Records.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW3.CRUD.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2\bin\Debug\net5.0\HW3.Records.pdb

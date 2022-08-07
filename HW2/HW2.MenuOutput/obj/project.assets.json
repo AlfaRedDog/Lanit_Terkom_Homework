@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "HW3.Records/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/HW3.Records.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/HW3.Records.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "HW3.Records/1.0.0": {
+      "type": "project",
+      "path": "../HW3.Records/HW3.Records.csproj",
+      "msbuildProject": "../HW3.Records/HW3.Records.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "HW3.Records >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\mikhail\\.nuget\\packages\\": {},
@@ -38,7 +57,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Records.csproj": {
+              "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Records.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
