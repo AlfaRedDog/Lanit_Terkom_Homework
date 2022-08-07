@@ -14,6 +14,7 @@ namespace HW2
         {
             try
             {
+                //перейти на enum
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Choose Operation:");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "1 - Find Fibonacci number");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "2 - Read File");
@@ -138,7 +139,7 @@ namespace HW2
                     MenuOutput.ColorWriteLine(ConsoleColor.Red, "Wrong code of the table");
                     ContinueActions(sd);
                 }
-
+                //перейти на enum
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"1 - SELECT * FROM {tableName} WHERE !column!=!value!");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"2 - UPDATE {tableName} SET !column!=!value! WHERE Id = !id!");
                 MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"3 - DELETE FROM {tableName} WHERE !column!=!value!");
@@ -149,6 +150,7 @@ namespace HW2
                 
                 CRUD crud = new();
                 List<string> columns = crud.GetColumns(tableName);
+
                 if ((choice < 4) && (choice > 0))
                 {
                     for (int i = 0; i < columns.Count; i++)
@@ -156,6 +158,7 @@ namespace HW2
                         MenuOutput.ColorWriteLine(ConsoleColor.Yellow, $"{i} - {columns[i]}");
                     }
                     bool flag = Int32.TryParse(PrintRequestTakeResponse("Choose code of the !column!:"), out int index);
+
                     if((index >= columns.Count) || (index < 0) || (!flag))
                     {
                         MenuOutput.ColorWriteLine(ConsoleColor.Red, "Wrong code of column");
@@ -164,6 +167,7 @@ namespace HW2
 
                     string columnName = columns[index];
                     string value = PrintRequestTakeResponse("Enter !value!");
+
                     if(ReferenceEquals(value, null))
                     {
                         MenuOutput.ColorWriteLine(ConsoleColor.Red, "value cannot be empty");
@@ -176,6 +180,7 @@ namespace HW2
                         MenuOutput.PrintListOfIRecord(crud.ReadRecord(value, columnName, tableName));
                         MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                     }
+
                     if (choice == 2)
                     {
                         Guid.TryParse(PrintRequestTakeResponse("Enter Id to update:"), out Guid id);
@@ -187,20 +192,22 @@ namespace HW2
                         crud.UpdateRecord(id, columnName, value, tableName);
                         MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                     }
+
                     if (choice == 3)
                     {
                         crud.DeleteRecord(value, columnName, tableName);
                         MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
                     }
-
                 }
                 else if (choice == 4)
                 {
                     List<string> values = new();
+
                     for (int i = 0; i < columns.Count; i++)
                     {
                         values.Add(PrintRequestTakeResponse($"Enter {columns[i]} value: "));
                     }
+
                     crud.CreateRecord(crud.ParseListToIRecord(tableName, values), tableName);
                     MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
 
@@ -209,7 +216,6 @@ namespace HW2
                 {
                     MenuOutput.PrintList(crud.GetColumns(tableName), ConsoleColor.Green);
                     MenuOutput.PrintListOfIRecord(crud.ReadRecord(0, "", tableName, $"SELECT * FROM {tableName}"));
-                    //написать корректно
                     MenuOutput.ColorWriteLine(ConsoleColor.Yellow, "Operation succesful");
 
                 }else if(choice == 6)

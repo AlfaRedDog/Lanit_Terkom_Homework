@@ -23,7 +23,7 @@ namespace HW3.CRUD
 
                     foreach (var prop in record.GetType().GetProperties())
                     {
-                        sqlQuery += $"'{prop.GetValue(record, null)}', ";
+                        sqlQuery += $"'{prop.GetValue(record)}', ";
                     }
                     sqlQuery = sqlQuery.Remove(sqlQuery.Length - 2) + ")";
                 }
@@ -73,7 +73,7 @@ namespace HW3.CRUD
                     sqlQuery = $"SELECT * FROM {tableName} WHERE {column}='{value}'";
                 }
 
-                if (!string.IsNullOrEmpty(sqlQuery))
+                if (!ReferenceEquals(sqlQuery, null))
                 {
                     using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
                     {
@@ -116,7 +116,7 @@ namespace HW3.CRUD
             try
             {
                 if(sqlQuery == "")
-                    sqlQuery = $"UPDATE {tableName} SET {column} = '{value}' WHERE Id = '{id}'";
+                    sqlQuery = $"UPDATE {tableName} SET {column} = '{value}' WHERE Id = '{id}'"; // проверять value на null
                 
                 if (!string.IsNullOrEmpty(sqlQuery))
                 {
@@ -167,7 +167,6 @@ namespace HW3.CRUD
             }
             return null;
         }
-        //any SELECT, DELETE, UPDATE, INSERT maybe
 
         public static List<string> GetTables()
         {
