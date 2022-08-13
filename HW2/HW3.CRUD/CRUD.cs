@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using HW2.MenuOut;
-using HW3.Records;
+using HW3.Models;
 
 namespace HW3.CRUD
 {

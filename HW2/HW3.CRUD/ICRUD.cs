@@ -1,4 +1,4 @@
-﻿using HW3.Records;
+﻿using HW3.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -15,11 +15,10 @@ namespace HW3.CRUD
 
         List<IRecord> ReadRecord<T>(T value, string column, string tableName, string sqlQuery = "");
 
-        void ClearTable(string tableName);
+        public List<IRecord> AnyQueryCrud(string sqlQuery, string tableName);
 
         List<string> GetColumns(string tableName);
 
-        void ExecuteQuery(string sqlQuery, SqlConnection conn);
-
+        public IRecord ParseListToIRecord(string tableName, List<string> values);
     }
 }

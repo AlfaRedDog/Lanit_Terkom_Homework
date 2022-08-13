@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HW3.Records
+namespace HW3.Models
 {
     public class Order : IRecord
     {

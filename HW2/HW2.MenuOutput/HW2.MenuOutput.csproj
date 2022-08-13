@@ -1,11 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HW3.Records\HW3.Records.csproj" />
+    <ProjectReference Include="..\HW3.Records\HW3.Models.csproj" />
   </ItemGroup>
 
 </Project>

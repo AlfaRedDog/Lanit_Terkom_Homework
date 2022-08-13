@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using HW2.MenuOut;
 using HW3.CRUD;
-using HW3.Records;
+using HW3.Models;
 
 namespace HW2
 {

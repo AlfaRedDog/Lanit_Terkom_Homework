@@ -10,8 +10,8 @@ C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\obj\Debug\net5.0\HW3
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\obj\Debug\net5.0\refint\HW3.CRUD.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\obj\Debug\net5.0\HW3.CRUD.pdb
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\obj\Debug\net5.0\ref\HW3.CRUD.dll
-C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\bin\Debug\net5.0\HW3.Records.dll
-C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\bin\Debug\net5.0\HW3.Records.pdb
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\obj\Debug\net5.0\HW3.CRUD.csproj.CopyComplete
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\bin\Debug\net5.0\HW2.MenuOutput.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\bin\Debug\net5.0\HW2.MenuOutput.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\bin\Debug\net5.0\HW3.Models.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW3.CRUD\bin\Debug\net5.0\HW3.Models.pdb

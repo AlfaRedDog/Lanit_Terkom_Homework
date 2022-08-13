@@ -14,9 +14,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Records.csproj",
-      "projectName": "HW3.Records",
-      "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Records.csproj",
+      "projectUniqueName": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Models.csproj",
+      "projectName": "HW3.Models",
+      "projectPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\HW3.Models.csproj",
       "packagesPath": "C:\\Users\\mikhail\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\mikhail\\Desktop\\Lanit_Terkom_Homework\\HW2\\HW3.Records\\obj\\",
       "projectStyle": "PackageReference",

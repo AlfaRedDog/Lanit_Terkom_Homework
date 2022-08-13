@@ -16,7 +16,8 @@
     <ProjectReference Include="..\HW2.HTMLReader\HW2.HTMLReader.csproj" />
     <ProjectReference Include="..\HW2.MenuOutput\HW2.MenuOutput.csproj" />
     <ProjectReference Include="..\HW3.CRUD\HW3.CRUD.csproj" />
-    <ProjectReference Include="..\HW3.Records\HW3.Records.csproj" />
+    <ProjectReference Include="..\HW3.Records\HW3.Models.csproj" />
+    <ProjectReference Include="..\HW4.CRUDEntity\HW4.CRUDEntity.csproj" />
   </ItemGroup>
 
 </Project>

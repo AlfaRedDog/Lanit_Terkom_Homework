@@ -9,7 +9,7 @@
       "HW3.CRUD/1.0.0": {
         "dependencies": {
           "HW2.MenuOutput": "1.0.0",
-          "HW3.Records": "1.0.0",
+          "HW3.Models": "1.0.0",
           "System.Data.SqlClient": "4.8.3"
         },
         "runtime": {
@@ -93,15 +93,23 @@
       "System.Security.Principal.Windows/4.7.0": {},
       "HW2.MenuOutput/1.0.0": {
         "dependencies": {
-          "HW3.Records": "1.0.0"
+          "HW3.Models": "1.0.0"
         },
         "runtime": {
           "HW2.MenuOutput.dll": {}
         }
       },
-      "HW3.Records/1.0.0": {
+      "HW3.Models/1.0.0": {
         "runtime": {
-          "HW3.Records.dll": {}
+          "HW3.Models.dll": {}
+        }
+      },
+      "HW3.Records/1.0.0.0": {
+        "runtime": {
+          "HW3.Records.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
         }
       }
     }
@@ -180,8 +188,13 @@
       "serviceable": false,
       "sha512": ""
     },
-    "HW3.Records/1.0.0": {
+    "HW3.Models/1.0.0": {
       "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "HW3.Records/1.0.0.0": {
+      "type": "reference",
       "serviceable": false,
       "sha512": ""
     }

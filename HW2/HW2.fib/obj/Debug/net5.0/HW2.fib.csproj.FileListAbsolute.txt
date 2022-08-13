@@ -13,5 +13,5 @@ C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\ref\
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW2.MenuOutput.dll
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW2.MenuOutput.pdb
 C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\obj\Debug\net5.0\HW2.fib.csproj.CopyComplete
-C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW3.Records.dll
-C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW3.Records.pdb
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW3.Models.dll
+C:\Users\mikhail\Desktop\Lanit_Terkom_Homework\HW2\HW2.fib\bin\Debug\net5.0\HW3.Models.pdb

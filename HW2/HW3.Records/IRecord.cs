@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HW3.Records
+namespace HW3.Models
 {
     public interface IRecord
     {

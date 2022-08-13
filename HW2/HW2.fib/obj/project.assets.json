@@ -6,7 +6,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
-          "HW3.Records": "1.0.0"
+          "HW3.Models": "1.0.0"
         },
         "compile": {
           "bin/placeholder/HW2.MenuOutput.dll": {}
@@ -15,14 +15,14 @@
           "bin/placeholder/HW2.MenuOutput.dll": {}
         }
       },
-      "HW3.Records/1.0.0": {
+      "HW3.Models/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v5.0",
         "compile": {
-          "bin/placeholder/HW3.Records.dll": {}
+          "bin/placeholder/HW3.Models.dll": {}
         },
         "runtime": {
-          "bin/placeholder/HW3.Records.dll": {}
+          "bin/placeholder/HW3.Models.dll": {}
         }
       }
     }
@@ -33,10 +33,10 @@
       "path": "../HW2.MenuOutput/HW2.MenuOutput.csproj",
       "msbuildProject": "../HW2.MenuOutput/HW2.MenuOutput.csproj"
     },
-    "HW3.Records/1.0.0": {
+    "HW3.Models/1.0.0": {
       "type": "project",
-      "path": "../HW3.Records/HW3.Records.csproj",
-      "msbuildProject": "../HW3.Records/HW3.Records.csproj"
+      "path": "../HW3.Records/HW3.Models.csproj",
+      "msbuildProject": "../HW3.Records/HW3.Models.csproj"
     }
   },
   "projectFileDependencyGroups": {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HW3.Records
+namespace HW3.Models
 {
     public class Item : IRecord
     {
@@ -15,7 +15,7 @@ namespace HW3.Records
             Id_provider = Guid.Parse(values[1]);
             Amount = Int32.Parse(values[2]);
             Price = Int32.Parse(values[3]);
-            Expitation_date = DateTime.Parse(values[4]);
+            Expiration_date = DateTime.Parse(values[4]);
         }
         public Item(Guid id_provider, int amount, int price)
         {
@@ -23,7 +23,7 @@ namespace HW3.Records
             Price = price;
             Id = Guid.NewGuid();
             Id_provider = id_provider;
-            Expitation_date = DateTime.Now;
+            Expiration_date = DateTime.Now;
         }
         public Guid Id { get; set; }
 
@@ -33,6 +33,6 @@ namespace HW3.Records
         
         public int Price { get; set; }
 
-        public DateTime Expitation_date { get; set; }
+        public DateTime Expiration_date { get; set; }
     }
 }
